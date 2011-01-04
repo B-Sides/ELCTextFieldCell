@@ -1,0 +1,252 @@
+// !$*UTF8*$!
+{
+	1D3623240D0F684500981E51 /* ELCTextFieldCellDemoAppDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1407, 714}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 508}";
+		};
+	};
+	1D3623250D0F684500981E51 /* ELCTextFieldCellDemoAppDelegate.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {2753.5, 2002}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 783}";
+		};
+	};
+	1D6058900D05DD3D006BFB54 /* ELCTextFieldCellDemo */ = {
+		activeExec = 0;
+		executables = (
+			E26407C412D3A587005DA328 /* ELCTextFieldCellDemo */,
+		);
+	};
+	28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1407, 691}}";
+			sepNavSelRange = "{291, 0}";
+			sepNavVisRange = "{0, 447}";
+		};
+	};
+	28C286E00D94DF7D0034E888 /* RootViewController.m */ = {
+		uiCtxt = {
+			sepNavFolds = "{\n    c =     (\n                {\n            l = DetailViewController;\n            r = \"{5101, 24}\";\n            s = 1;\n        },\n                {\n            l = DetailViewController;\n            r = \"{5152, 24}\";\n            s = 1;\n        },\n                {\n            l = \"Nib name\";\n            r = \"{5202, 12}\";\n            s = 1;\n        }\n    );\n    r = \"{0, 5898}\";\n    s = 0;\n}";
+			sepNavIntBoundsRect = "{{0, 0}, {1407, 4862}}";
+			sepNavSelRange = "{1928, 0}";
+			sepNavVisRange = "{1197, 930}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = E26407C412D3A587005DA328 /* ELCTextFieldCellDemo */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* ELCTextFieldCellDemo */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* ELCTextFieldCellDemo */,
+		);
+		breakpoints = (
+			E264082312D3A86E005DA328 /* RootViewController.m:156 */,
+		);
+		codeSenseManager = E26407D412D3A589005DA328 /* Code sense */;
+		executables = (
+			E26407C412D3A587005DA328 /* ELCTextFieldCellDemo */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					1229,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 315860359;
+			PBXWorkspaceStateSaveDate = 315860359;
+		};
+		perUserProjectItems = {
+			E264082512D3A870005DA328 /* PBXTextBookmark */ = E264082512D3A870005DA328 /* PBXTextBookmark */;
+			E264082612D3A870005DA328 /* PBXTextBookmark */ = E264082612D3A870005DA328 /* PBXTextBookmark */;
+			E264082712D3A870005DA328 /* PBXTextBookmark */ = E264082712D3A870005DA328 /* PBXTextBookmark */;
+			E264082812D3A870005DA328 /* PBXTextBookmark */ = E264082812D3A870005DA328 /* PBXTextBookmark */;
+			E264082912D3A870005DA328 /* PBXTextBookmark */ = E264082912D3A870005DA328 /* PBXTextBookmark */;
+			E264084212D3A8C9005DA328 /* PBXTextBookmark */ = E264084212D3A8C9005DA328 /* PBXTextBookmark */;
+			E264084312D3A8C9005DA328 /* PBXTextBookmark */ = E264084312D3A8C9005DA328 /* PBXTextBookmark */;
+			E264084412D3A8C9005DA328 /* PBXTextBookmark */ = E264084412D3A8C9005DA328 /* PBXTextBookmark */;
+			E264084512D3A8C9005DA328 /* PBXTextBookmark */ = E264084512D3A8C9005DA328 /* PBXTextBookmark */;
+		};
+		sourceControlManager = E26407D312D3A589005DA328 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	E26407C412D3A587005DA328 /* ELCTextFieldCellDemo */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = ELCTextFieldCellDemo;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	E26407D312D3A589005DA328 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	E26407D412D3A589005DA328 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	E26407D612D3A5AF005DA328 /* ELCTextfieldCell.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1554.71, 2420}}";
+			sepNavSelRange = "{2277, 0}";
+			sepNavVisRange = "{178, 1120}";
+		};
+	};
+	E264082312D3A86E005DA328 /* RootViewController.m:156 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		functionName = "-textFieldDidReturnWithIndexPath:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 156;
+		location = ELCTextFieldCellDemo;
+		modificationTime = 315861102.66849;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	E264082512D3A870005DA328 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* ELCTextFieldCellDemoAppDelegate.h */;
+		name = "ELCTextFieldCellDemoAppDelegate.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 508;
+		vrLoc = 0;
+	};
+	E264082612D3A870005DA328 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* ELCTextFieldCellDemoAppDelegate.m */;
+		name = "ELCTextFieldCellDemoAppDelegate.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 783;
+		vrLoc = 0;
+	};
+	E264082712D3A870005DA328 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286DF0D94DF7D0034E888 /* RootViewController.h */;
+		name = "RootViewController.h: 12";
+		rLen = 0;
+		rLoc = 291;
+		rType = 0;
+		vrLen = 447;
+		vrLoc = 0;
+	};
+	E264082812D3A870005DA328 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 159";
+		rLen = 0;
+		rLoc = 4681;
+		rType = 0;
+		vrLen = 1079;
+		vrLoc = 3785;
+	};
+	E264082912D3A870005DA328 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 159";
+		rLen = 0;
+		rLoc = 4681;
+		rType = 0;
+		vrLen = 1079;
+		vrLoc = 3785;
+	};
+	E264084212D3A8C9005DA328 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286DF0D94DF7D0034E888 /* RootViewController.h */;
+		name = "RootViewController.h: 12";
+		rLen = 0;
+		rLoc = 291;
+		rType = 0;
+		vrLen = 447;
+		vrLoc = 0;
+	};
+	E264084312D3A8C9005DA328 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = E26407D612D3A5AF005DA328 /* ELCTextfieldCell.m */;
+		name = "ELCTextfieldCell.m: 68";
+		rLen = 0;
+		rLoc = 2277;
+		rType = 0;
+		vrLen = 1120;
+		vrLoc = 178;
+	};
+	E264084412D3A8C9005DA328 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 159";
+		rLen = 0;
+		rLoc = 4681;
+		rType = 0;
+		vrLen = 1079;
+		vrLoc = 3785;
+	};
+	E264084512D3A8C9005DA328 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */;
+		name = "RootViewController.m: 81";
+		rLen = 0;
+		rLoc = 1928;
+		rType = 0;
+		vrLen = 930;
+		vrLoc = 1197;
+	};
+}
