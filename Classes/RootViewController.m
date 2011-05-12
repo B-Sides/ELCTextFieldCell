@@ -75,6 +75,9 @@
 	cell.rightTextField.placeholder = [self.placeholders objectAtIndex:indexPath.row];
 	cell.indexPath = indexPath;
 	cell.delegate = self;
+        //Disables UITableViewCell from accidentally becoming selected.
+        cell.selectionStyle = UITableViewCellEditingStyleNone;
+
 	
 	if(indexPath.row == 3) {
 	
