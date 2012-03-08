@@ -105,7 +105,7 @@
 }
 
 - (void)dealloc {
-	
+    [rightTextField resignFirstResponder];	
 	[leftLabel release];
 	[rightTextField release];
 	[indexPath release];
