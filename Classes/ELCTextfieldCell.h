@@ -8,25 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class ELCTextfieldCell;
 
-@interface ELCTextfieldCell : UITableViewCell <UITextFieldDelegate> {
+@protocol ELCTextFieldDelegate <NSObject>
+@optional
+-(BOOL)textField:(ELCTextfieldCell *)inCell shouldReturnForIndexPath:(NSIndexPath*)inIndexPath withValue:(NSString *)inValue;
+-(void)textField:(ELCTextfieldCell *)inCell didReturnWithIndexPath:(NSIndexPath*)inIndexPath withValue:(NSString *)inValue;
+-(void)textField:(ELCTextfieldCell *)inCell updateTextLabelAtIndexPath:(NSIndexPath *)inIndexPath string:(NSString *)inValue;
+@end
 
-	id delegate;
-	UILabel *leftLabel;
-	UITextField *rightTextField;
-	NSIndexPath *indexPath;
-}
-
-@property (nonatomic, assign) id delegate;
+@interface ELCTextfieldCell : UITableViewCell <UITextFieldDelegate> 
+@property (nonatomic, assign) id<ELCTextFieldDelegate> delegate;
 @property (nonatomic, retain) UILabel *leftLabel;
 @property (nonatomic, retain) UITextField *rightTextField;
 @property (nonatomic, retain) NSIndexPath *indexPath;
 
 @end
 
-@protocol ELCTextFieldDelegate
-
--(void)textFieldDidReturnWithIndexPath:(NSIndexPath*)_indexPath;
--(void)updateTextLabelAtIndexPath:(NSIndexPath*)_indexPath string:(NSString*)_string;
-
-@end
