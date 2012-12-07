@@ -65,15 +65,29 @@
     [super setSelected:selected animated:animated];
 }
 
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES;
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	
-	if([delegate respondsToSelector:@selector(textFieldDidReturnWithIndexPath:)]) {
-		
-		[delegate performSelector:@selector(textFieldDidReturnWithIndexPath:) withObject:indexPath];
+    BOOL ret = YES;
+	if([delegate respondsToSelector:@selector(textField:shouldReturnForIndexPath:withValue:)])
+    {
+        ret = [delegate textField:self shouldReturnForIndexPath:indexPath withValue:self.rightTextField.text];
 	}
-	
-	return YES;
+    if(ret)
+        [textField resignFirstResponder];
+    return ret;
 }
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if([delegate respondsToSelector:@selector(textField:didReturnWithIndexPath:withValue:)])
+        [delegate textField:self didReturnWithIndexPath:indexPath withValue:self.rightTextField.text];
+}
+
 
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 
@@ -97,15 +111,16 @@
 		}
 	}
 	
-	if([delegate respondsToSelector:@selector(updateTextLabelAtIndexPath:string:)]) {		
-		[delegate performSelector:@selector(updateTextLabelAtIndexPath:string:) withObject:indexPath withObject:textString];
+	if([delegate respondsToSelector:@selector(textField:updateTextLabelAtIndexPath:string:)]) 
+    {
+		[delegate textField:self updateTextLabelAtIndexPath:indexPath string:textString];
 	}
 	
 	return YES;
 }
 
 - (void)dealloc {
-	
+	[rightTextField resignFirstResponder];
 	[leftLabel release];
 	[rightTextField release];
 	[indexPath release];
