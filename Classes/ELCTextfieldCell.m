@@ -1,130 +1,172 @@
 //
-//  ELCTextfieldCell.m
-//  MobileWorkforce
+//  ELCTextFieldCell.m
+//  ELC Utility
 //
-//  Created by Collin Ruffenach on 10/22/10.
-//  Copyright 2010 ELC Tech. All rights reserved.
+//  Copyright 2012 ELC Tech. All rights reserved.
 //
 
-#import "ELCTextfieldCell.h"
+#import "ELCTextFieldCell.h"
 
+#pragma mark ELCInsetTextField
 
-@implementation ELCTextfieldCell
+@implementation ELCInsetTextField
 
-@synthesize delegate;
-@synthesize leftLabel;
-@synthesize rightTextField;
-@synthesize indexPath;
+- (CGRect)textRectForBounds:(CGRect)bounds
+{
+    return UIEdgeInsetsInsetRect(bounds, _inset);
+}
+- (CGRect)editingRectForBounds:(CGRect)bounds
+{
+    return UIEdgeInsetsInsetRect(bounds, _inset);
+}
+- (CGRect)placeholderRectForBounds:(CGRect)bounds
+{
+    return UIEdgeInsetsInsetRect(bounds, _inset);
+}
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    
+@end
+
+#pragma mark - ELCTextFieldCell
+
+@implementation ELCTextFieldCell
+
+//using auto synthesizers
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{    
 	if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
 		
-		leftLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-		[leftLabel setBackgroundColor:[UIColor clearColor]];
-		[leftLabel setTextColor:[UIColor colorWithRed:.285 green:.376 blue:.541 alpha:1]];
-		[leftLabel setFont:[UIFont fontWithName:@"Helvetica" size:12]];
-		[leftLabel setTextAlignment:UITextAlignmentRight];
-		[leftLabel setText:@"Left Field"];
-		[self addSubview:leftLabel];
+		_leftLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		[_leftLabel setBackgroundColor:[UIColor clearColor]];
+		[_leftLabel setTextColor:[UIColor colorWithRed:.285 green:.376 blue:.541 alpha:1]];
+		[_leftLabel setFont:[UIFont fontWithName:@"Helvetica" size:17]];
+		[_leftLabel setTextAlignment:UITextAlignmentRight];
+		[self addSubview:_leftLabel];
 		
-		rightTextField = [[UITextField alloc] initWithFrame:CGRectZero];
-		rightTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-		[rightTextField setDelegate:self];
-		[rightTextField setPlaceholder:@"Right Field"];
-		[rightTextField setFont:[UIFont systemFontOfSize:17]];
+		_rightTextField = [[ELCInsetTextField alloc] initWithFrame:CGRectZero];
+		_rightTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+		[_rightTextField setDelegate:self];
+		[_rightTextField setFont:[UIFont systemFontOfSize:17]];
 		
-		// FOR MWF USE DONE
-		[rightTextField setReturnKeyType:UIReturnKeyDone];
+        //Use Done for all of them.
+		[_rightTextField setReturnKeyType:UIReturnKeyDone];
 		
-		[self addSubview:rightTextField];
+		[self addSubview:_rightTextField];
     }
 	
     return self;
 }
 
 //Layout our fields in case of a layoutchange (fix for iPad doing strange things with margins if width is > 400)
-- (void)layoutSubviews {
+- (void)layoutSubviews
+{
 	[super layoutSubviews];
 	CGRect origFrame = self.contentView.frame;
-	if (leftLabel.text != nil) {
-		leftLabel.frame = CGRectMake(origFrame.origin.x, origFrame.origin.y, 90, origFrame.size.height-1);
-		rightTextField.frame = CGRectMake(origFrame.origin.x+105, origFrame.origin.y, origFrame.size.width-120, origFrame.size.height-1);
+	if (_leftLabel.text != nil) {
+        _leftLabel.hidden = NO;
+		_leftLabel.frame = CGRectMake(origFrame.origin.x, origFrame.origin.y, 125, origFrame.size.height-1);
+		_rightTextField.frame = CGRectMake(origFrame.origin.x+130, origFrame.origin.y, origFrame.size.width-140, origFrame.size.height);
 	} else {
-		leftLabel.hidden = YES;
+		_leftLabel.hidden = YES;
 		NSInteger imageWidth = 0;
 		if (self.imageView.image != nil) {
 			imageWidth = self.imageView.image.size.width + 5;
 		}
-		rightTextField.frame = CGRectMake(origFrame.origin.x+imageWidth+10, origFrame.origin.y, origFrame.size.width-imageWidth-20, origFrame.size.height-1);
+		_rightTextField.frame = CGRectMake(origFrame.origin.x+imageWidth+10, origFrame.origin.y, origFrame.size.width-imageWidth-20, origFrame.size.height-1);
 	}
+    [self setNeedsDisplay];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-
-    [super setSelected:selected animated:animated];
-}
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    return YES;
+    [super setSelected:selected animated:animated];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	
     BOOL ret = YES;
-	if([delegate respondsToSelector:@selector(textField:shouldReturnForIndexPath:withValue:)])
-    {
-        ret = [delegate textField:self shouldReturnForIndexPath:indexPath withValue:self.rightTextField.text];
+	if([_delegate respondsToSelector:@selector(textFieldCell:shouldReturnForIndexPath:withValue:)]) {
+        ret = [_delegate textFieldCell:self shouldReturnForIndexPath:_indexPath withValue:self.rightTextField.text];
 	}
-    if(ret)
+    if(ret) {
         [textField resignFirstResponder];
+    }
     return ret;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if([delegate respondsToSelector:@selector(textField:didReturnWithIndexPath:withValue:)])
-        [delegate textField:self didReturnWithIndexPath:indexPath withValue:self.rightTextField.text];
-}
-
-
-- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-
 	NSString *textString = self.rightTextField.text;
+	textString = [textString stringByReplacingCharactersInRange:range withString:string];
 	
-	if (range.length > 0) {
-		
-		textString = [textString stringByReplacingCharactersInRange:range withString:@""];
-	} 
-	
-	else {
-		
-		if(range.location == [textString length]) {
-			
-			textString = [textString stringByAppendingString:string];
-		}
-
-		else {
-			
-			textString = [textString stringByReplacingCharactersInRange:range withString:string];	
-		}
-	}
-	
-	if([delegate respondsToSelector:@selector(textField:updateTextLabelAtIndexPath:string:)]) 
-    {
-		[delegate textField:self updateTextLabelAtIndexPath:indexPath string:textString];
+	if([_delegate respondsToSelector:@selector(textFieldCell:updateTextLabelAtIndexPath:string:)]) {
+		[_delegate textFieldCell:self updateTextLabelAtIndexPath:_indexPath string:textString];
 	}
 	
 	return YES;
 }
 
-- (void)dealloc {
-	[rightTextField resignFirstResponder];
-	[leftLabel release];
-	[rightTextField release];
-	[indexPath release];
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+    if([_delegate respondsToSelector:@selector(updateTextLabelAtIndexPath:string:)]) {
+		[_delegate performSelector:@selector(updateTextLabelAtIndexPath:string:) withObject:_indexPath withObject:nil];
+	}
+    return YES;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if([_delegate respondsToSelector:@selector(textFieldShouldBeginEditing:)]) {		
+		return [_delegate textFieldShouldBeginEditing:(UITextField *)textField];
+	}
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    if([_delegate respondsToSelector:@selector(textFieldShouldEndEditing:)]) {		
+		return [_delegate textFieldShouldEndEditing:(UITextField *)textField];
+	}
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if([_delegate respondsToSelector:@selector(textFieldDidBeginEditing:)]) {
+		return [_delegate textFieldDidBeginEditing:(UITextField *)textField];
+	}   
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if([_delegate respondsToSelector:@selector(textFieldDidEndEditing:)]) {
+        [_delegate textFieldDidEndEditing:(UITextField*)textField];
+    }
+}
+
+- (void)dealloc
+{
+    _delegate = nil;
+    [_rightTextField resignFirstResponder];
+	[_leftLabel release];
+	[_rightTextField release];
+	[_indexPath release];
     [super dealloc];
 }
 
+@end
+
+#pragma mark - ELCInsetTextFieldCell
+
+@implementation ELCInsetTextFieldCell
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:UIEdgeInsetsInsetRect(frame, _inset)];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.rightTextField.frame = CGRectInset(self.rightTextField.frame, 0, 4);
+}
 @end

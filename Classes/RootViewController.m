@@ -69,7 +69,7 @@
 #pragma mark -
 #pragma mark Table view data source
 
-- (void)configureCell:(ELCTextfieldCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(ELCTextFieldCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 	
 	cell.leftLabel.text = [self.labels objectAtIndex:indexPath.row];
 	cell.rightTextField.placeholder = [self.placeholders objectAtIndex:indexPath.row];
@@ -102,9 +102,9 @@
     
     static NSString *CellIdentifier = @"Cell";
     
-    ELCTextfieldCell *cell = (ELCTextfieldCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    ELCTextFieldCell *cell = (ELCTextFieldCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[ELCTextfieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[ELCTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
 	
 	[self configureCell:cell atIndexPath:indexPath];
@@ -154,17 +154,22 @@
 
 #pragma mark ELCTextFieldCellDelegate Methods
 
--(void)textFieldDidReturnWithIndexPath:(NSIndexPath*)indexPath {
-
-	if(indexPath.row < [labels count]-1) {
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    ELCTextFieldCell *textFieldCell = (ELCTextFieldCell*)textField.superview;
+    if (![textFieldCell isKindOfClass:ELCTextFieldCell.class]) {
+        return;
+    }
+    //It's a better method to get the indexPath like this, in case you are rearranging / removing / adding rows,
+    //the set indexPath wouldn't change
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:textFieldCell];
+	if(indexPath != nil && indexPath.row < [labels count]-1) {
 		NSIndexPath *path = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section];
-		[[(ELCTextfieldCell*)[self.tableView cellForRowAtIndexPath:path] rightTextField] becomeFirstResponder];
+		[[(ELCTextFieldCell*)[self.tableView cellForRowAtIndexPath:path] rightTextField] becomeFirstResponder];
 		[self.tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
 	}
-	
 	else {
-	
-		[[(ELCTextfieldCell*)[self.tableView cellForRowAtIndexPath:indexPath] rightTextField] resignFirstResponder];
+		[[(ELCTextFieldCell*)[self.tableView cellForRowAtIndexPath:indexPath] rightTextField] resignFirstResponder];
 	}
 }
 
