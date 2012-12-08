@@ -18,7 +18,9 @@
 @protocol ELCTextFieldDelegate <NSObject>
 
 @optional
+//Called to the delegate whenever return is hit when a user is typing into the rightTextField of an ELCTextFieldCell
 - (BOOL)textFieldCell:(ELCTextFieldCell *)inCell shouldReturnForIndexPath:(NSIndexPath*)inIndexPath withValue:(NSString *)inValue;
+//Called to the delegate whenever the text in the rightTextField is changed
 - (void)textFieldCell:(ELCTextFieldCell *)inCell updateTextLabelAtIndexPath:(NSIndexPath *)inIndexPath string:(NSString *)inValue;
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;

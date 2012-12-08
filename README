@@ -1,20 +1,26 @@
 ****** HOW TO USE ******
 
-This UITableViewCell subclass is most commonly used for the creation of forms. There is a leftLabel and a rightTextField in each cell. You should configure the labels text and the textfields placeholder appropriately. The cell defines a protocol called ELCTextFieldDelegate which has 2 methods. 
+This UITableViewCell subclass is most commonly used for the creation of forms. There is a leftLabel and a rightTextField in each cell. You should configure the labels text and the textfields placeholder appropriately. The cell defines a protocol called ELCTextFieldDelegate which has 6 optional methods. 
 
-//Called to the delegate whenever return is hit when a user is typing into the rightTextField of an ELCTextFieldCell
-
--(void)textFieldDidReturnWithIndexPath:(NSIndexPath*)indexPath
+The two most used are:
 
 //Called to the delegate whenever the text in the rightTextField is changed
+- (void)textFieldCell:(ELCTextFieldCell *)inCell updateTextLabelAtIndexPath:(NSIndexPath *)inIndexPath string:(NSString *)inValue;
 
-- (void)updateTextLabelAtIndexPath:(NSIndexPath*)indexPath string:(NSString*)string {
+//Called to the delegate whenever return is hit when a user is typing into the rightTextField of an ELCTextFieldCell
+- (BOOL)textFieldCell:(ELCTextFieldCell *)inCell shouldReturnForIndexPath:(NSIndexPath*)inIndexPath withValue:(NSString *)inValue;
+
+The other four just forward on the UITextFieldDelegate methods, if the ELCTextFieldCellDelegate implements them.
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField;
+- (void)textFieldDidBeginEditing:(UITextField *)textField;
+- (void)textFieldDidEndEditing:(UITextField *)textField;
 
 ************************
 
 The MIT License
 
-Copyright (c) 2010 ELC Technologies
+Copyright (c) 2012 ELC Technologies
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
