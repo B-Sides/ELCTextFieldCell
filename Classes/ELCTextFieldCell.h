@@ -32,10 +32,10 @@
 
 @interface ELCTextFieldCell : UITableViewCell <UITextFieldDelegate>
 
-@property (nonatomic, assign) id<ELCTextFieldDelegate> delegate;
-@property (nonatomic, retain) UILabel *leftLabel;
-@property (nonatomic, retain) ELCInsetTextField *rightTextField;
-@property (nonatomic, retain) NSIndexPath *indexPath;
+@property (nonatomic, weak) id<ELCTextFieldDelegate> delegate;
+@property (nonatomic, strong) UILabel *leftLabel;
+@property (nonatomic, strong) ELCInsetTextField *rightTextField;
+@property (nonatomic, strong) NSIndexPath *indexPath;
 
 @end
 

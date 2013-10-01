@@ -33,17 +33,18 @@
 //using auto synthesizers
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{    
-	if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+	if (self) {
 		
-		_leftLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		self.leftLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 		[_leftLabel setBackgroundColor:[UIColor clearColor]];
 		[_leftLabel setTextColor:[UIColor colorWithRed:.285 green:.376 blue:.541 alpha:1]];
 		[_leftLabel setFont:[UIFont fontWithName:@"Helvetica" size:17]];
-		[_leftLabel setTextAlignment:UITextAlignmentRight];
+		[_leftLabel setTextAlignment:NSTextAlignmentCenter];
 		[self addSubview:_leftLabel];
 		
-		_rightTextField = [[ELCInsetTextField alloc] initWithFrame:CGRectZero];
+		self.rightTextField = [[ELCInsetTextField alloc] initWithFrame:CGRectZero];
 		_rightTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 		[_rightTextField setDelegate:self];
 		[_rightTextField setFont:[UIFont systemFontOfSize:17]];
@@ -148,16 +149,11 @@
 {
     _delegate = nil;
     [_rightTextField resignFirstResponder];
-	[_leftLabel release];
-	[_rightTextField release];
-	[_indexPath release];
-    [super dealloc];
 }
 
 @end
 
 #pragma mark - ELCInsetTextFieldCell
-
 @implementation ELCInsetTextFieldCell
 - (void)setFrame:(CGRect)frame
 {
@@ -170,3 +166,4 @@
     self.rightTextField.frame = CGRectInset(self.rightTextField.frame, 0, 4);
 }
 @end
+

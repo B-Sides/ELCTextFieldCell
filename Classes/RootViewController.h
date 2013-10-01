@@ -15,7 +15,7 @@
 	NSArray *placeholders;
 }
 
-@property (nonatomic, retain) NSArray *labels;
-@property (nonatomic, retain) NSArray *placeholders;
+@property (nonatomic, strong) NSArray *labels;
+@property (nonatomic, strong) NSArray *placeholders;
 
 @end
