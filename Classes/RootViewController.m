@@ -75,13 +75,12 @@
 	cell.rightTextField.placeholder = [self.placeholders objectAtIndex:indexPath.row];
 	cell.indexPath = indexPath;
 	cell.delegate = self;
-        //Disables UITableViewCell from accidentally becoming selected.
-        cell.selectionStyle = UITableViewCellEditingStyleNone;
+    //Disables UITableViewCell from accidentally becoming selected.
+    cell.selectionStyle = UITableViewCellEditingStyleNone;
 
 	
-	if(indexPath.row == 3) {
-	
-		[cell.rightTextField setKeyboardType:UIKeyboardTypeNumberPad];
+	if (indexPath.row == 3) {
+        [cell.rightTextField setKeyboardType:UIKeyboardTypeNumberPad];        
 	}
 }
 
@@ -104,7 +103,7 @@
     
     ELCTextFieldCell *cell = (ELCTextFieldCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[ELCTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[ELCTextFieldCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
     }
 	
 	[self configureCell:cell atIndexPath:indexPath];

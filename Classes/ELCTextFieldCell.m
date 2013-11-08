@@ -38,21 +38,39 @@
 	if (self) {
 		
 		self.leftLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-		[_leftLabel setBackgroundColor:[UIColor clearColor]];
-		[_leftLabel setTextColor:[UIColor colorWithRed:.285 green:.376 blue:.541 alpha:1]];
-		[_leftLabel setFont:[UIFont fontWithName:@"Helvetica" size:17]];
-		[_leftLabel setTextAlignment:NSTextAlignmentCenter];
+		self.leftLabel.backgroundColor = [UIColor clearColor];
+        self.leftLabel.textAlignment = NSTextAlignmentRight;
 		[self addSubview:_leftLabel];
 		
 		self.rightTextField = [[ELCInsetTextField alloc] initWithFrame:CGRectZero];
-		_rightTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-		[_rightTextField setDelegate:self];
-		[_rightTextField setFont:[UIFont systemFontOfSize:17]];
-		
+		self.rightTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+		self.rightTextField.delegate = self;
         //Use Done for all of them.
-		[_rightTextField setReturnKeyType:UIReturnKeyDone];
-		
-		[self addSubview:_rightTextField];
+		self.rightTextField.returnKeyType = UIReturnKeyDone;
+        [self addSubview:_rightTextField];
+        
+        //Try to mimic the style of UITableViewCellStyleValue2 if inited with that style
+        if (style == UITableViewCellStyleValue2) {
+            //If iOS 7 and set up as UITableViewCellStyleValue2
+            if ([self respondsToSelector:@selector(tintColor)]) {
+                self.leftLabel.font = self.textLabel.font;
+                self.leftLabel.textColor = self.textLabel.textColor;
+                self.rightTextField.font = self.detailTextLabel.font;
+                
+                //iOS 6 and below returns a 0 font size for the detailTextLabel.font
+                //So Revert to hard coding in the font and color in iOS 6 and below
+            } else {
+                self.leftLabel.font = [UIFont boldSystemFontOfSize:12];
+                self.leftLabel.textColor = [UIColor colorWithRed:.285 green:.376 blue:.541 alpha:1];
+                self.rightTextField.font = [UIFont boldSystemFontOfSize:15];
+            }
+            
+            //Otherwise have a sane default
+        } else {
+            self.leftLabel.font = [UIFont systemFontOfSize:17];
+            self.leftLabel.textColor = [UIColor colorWithRed:.285 green:.376 blue:.541 alpha:1];
+            self.rightTextField.font = [UIFont systemFontOfSize:17];
+        }
     }
 	
     return self;
