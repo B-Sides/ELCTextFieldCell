@@ -103,7 +103,7 @@
 	}
 }
 
-- (void)updateTextLabelAtIndexPath:(NSIndexPath*)indexPath string:(NSString*)string {
+- (void)textFieldCell:(ELCTextFieldCell *)inCell updateTextLabelAtIndexPath:(NSIndexPath *)indexPath string:(NSString *)string {
 
 	NSLog(@"See input: %@ from section: %d row: %d, should update models appropriately", string, indexPath.section, indexPath.row);
 }
