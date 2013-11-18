@@ -127,8 +127,8 @@
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
-    if([_delegate respondsToSelector:@selector(updateTextLabelAtIndexPath:string:)]) {
-		[_delegate performSelector:@selector(updateTextLabelAtIndexPath:string:) withObject:_indexPath withObject:nil];
+	if([_delegate respondsToSelector:@selector(textFieldCell:updateTextLabelAtIndexPath:string:)]) {
+		[_delegate textFieldCell:self updateTextLabelAtIndexPath:_indexPath string:nil];
 	}
     return YES;
 }
