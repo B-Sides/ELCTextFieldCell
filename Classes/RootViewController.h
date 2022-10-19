@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ELCTextfieldCell.h"
+#import "ELCTextFieldCell.h"
 
 @interface RootViewController : UITableViewController <ELCTextFieldDelegate> {
 	

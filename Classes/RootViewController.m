@@ -105,7 +105,7 @@
 
 - (void)textFieldCell:(ELCTextFieldCell *)inCell updateTextLabelAtIndexPath:(NSIndexPath *)indexPath string:(NSString *)string {
 
-	NSLog(@"See input: %@ from section: %d row: %d, should update models appropriately", string, indexPath.section, indexPath.row);
+    NSLog(@"See input: %@ from section: %ld row: %ld, should update models appropriately", string, (long)indexPath.section, (long)indexPath.row);
 }
 
 @end
